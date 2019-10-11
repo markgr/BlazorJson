@@ -1,0 +1,23 @@
+﻿@page "/"
+@using Microsoft.AspNetCore.ProtectedBrowserStorage;
+@inject ProtectedSessionStorage ProtectedSessionStore
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<button class="btn btn-primary" @onclick="TestStorage">Test Storage</button>
+
+@code {
+    async Task TestStorage()
+    {
+        try
+        {
+            await ProtectedSessionStore.SetAsync("Name", "Mark");
+        }
+        catch(Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    }
+}
